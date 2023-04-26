@@ -1,1 +1,7 @@
-Use the `data/migrations` folder to keep your migration(s) as per your knexfile
+
+exports.up = function(knex) {
+    table.increments("project_id").primary()
+}
+exports.down = function (knex) {
+    return knex.schema.dropTableIfExists("projects")
+}
