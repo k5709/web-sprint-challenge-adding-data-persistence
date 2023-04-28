@@ -13,6 +13,6 @@ exports.up = function (knex) {
   });
 };
 
-exports.down = function (knex) {
-  return knex.schema.dropTableIfExists("tasks");
+exports.down = async function (knex) {
+  return await knex.schema.dropTableIfExists("tasks");
 };

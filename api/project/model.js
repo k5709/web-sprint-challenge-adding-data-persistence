@@ -1,8 +1,14 @@
 // build your `Project` model here
 const db = require("../../data/dbConfig");
 
-function getAll() {
-  return db("projects");
+async function getAll() {
+  const projects = await db("projects");
+  return projects.map((project) => {
+    return {
+      ...project,
+      project_completed: project.project_completed === 1,
+    };
+  });
 }
 
 function findById(id) {

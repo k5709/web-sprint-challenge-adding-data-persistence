@@ -2,27 +2,19 @@ const router = require("express").Router();
 
 const Project = require("./model");
 
-router.get("/api/projects", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    console.log(req.body);
     const projects = await Project.getAll();
-    res.json({
-      resource_id: 1,
-      resource_name: "foo",
-      resource_description: null,
-    });
-  } catch (next) {
-    next();
+    res.status(200).json(projects);
+  } catch (err) {
+    next(err);
   }
 });
 
-router.post("/api/projects", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
-    const newProject = Project.insert(req.body);
-    res.json({
-      ...newProject,
-      project_completed: newProject.project_completed ? true : false,
-    });
+    const newProject = await Project.insert(req.body);
+    res.json(newProject);
   } catch (err) {
     next(err);
   }
