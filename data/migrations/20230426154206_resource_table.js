@@ -1,8 +1,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("resources", (table) => {
     table.increments("resource_id"); // primary key
-    table.string("resource_name").notNullable().unique();
-    table.string("resource_description", 200);
+    table.string("resource_name", 128).notNullable().unique();
+    table.string("resource_description", 255);
   });
 };
 

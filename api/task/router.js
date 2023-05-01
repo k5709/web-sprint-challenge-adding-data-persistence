@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 router.post("/", async (req, res, next) => {
   try {
     const newTask = await Task.insert(req.body);
-    newTask.task_completed = Boolean(newTask.task_completed);
+    // newTask.task_completed = Boolean(newTask.task_completed);
     return res.json(newTask);
   } catch (err) {
     next(err);

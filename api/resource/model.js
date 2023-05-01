@@ -9,6 +9,9 @@ function findById(id) {
 }
 
 function insert(resource) {
+  if (!resource.resource_name) {
+    throw new Error("Resource name cannot be empty.");
+  }
   return db("resources")
     .insert(resource)
     .then(([id]) => {
