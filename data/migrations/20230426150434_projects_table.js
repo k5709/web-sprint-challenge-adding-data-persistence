@@ -3,7 +3,7 @@ exports.up = function (knex) {
     table.increments("project_id");
     table.string("project_name", 200).notNullable();
     table.string("project_description", 200);
-    table.integer("project_completed").defaultTo(false);
+    table.boolean("project_completed").defaultTo(false);
   });
 };
 

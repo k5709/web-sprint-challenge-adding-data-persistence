@@ -15,6 +15,12 @@ router.post("/", async (req, res, next) => {
   try {
     const newResource = await Resource.insert(req.body);
     res.json(newResource);
+    if (!newResource.resource_name) {
+      next({
+        status: 400,
+        customMessage: "resource_name not found",
+      });
+    }
   } catch (err) {
     next(err);
   }
